@@ -5,12 +5,14 @@ window.ANNOTATION_CLIPS = [
     label: "Clip 1",
     src: "https://raw.githubusercontent.com/mariacmorais/gesture/main/clip_01.mp4",
     poster: "",
+    prompt: "Please enter the gesture(s) you have identified from this clip.",
   },
   {
     id: "clip_02",
     label: "Clip 2",
     src: "https://raw.githubusercontent.com/mariacmorais/gesture/main/clip_02.mp4",
     poster: "",
+    prompt: "Please enter the gesture(s) you have identified from this clip.",
   },
   {
     id: "clip_03",
