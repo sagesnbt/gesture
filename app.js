@@ -3,6 +3,39 @@ const submitAllBtn = document.getElementById("submitAllBtn");
 const submissionStatus = document.getElementById("submissionStatus");
 const toastTemplate = document.getElementById("toastTemplate");
 
+const GESTURES = [
+  "Insert",
+  "Port Placement",
+  "Pull",
+  "Push",
+  "Release",
+  "Retract",
+  "Stick",
+  "Spread",
+  "Camera Move",
+  "Dissect",
+  "Resect",
+  "Cut",
+  "Seal",
+  "Irrigate",
+  "Suction",
+  "Grasp",
+  "Clamp",
+  "Clean",
+  "Clip",
+  "Coagulate",
+  "Tamponade",
+  "Hook",
+  "Idle",
+  "Instrument Removal",
+  "Rotate",
+  "Specimen Removal",
+  "Staple",
+  "Knot Tie",
+  "Needle Drive"
+];
+
+
 const clips = window.ANNOTATION_CLIPS || [];
 const submissionConfig = window.ANNOTATION_SUBMISSION || {};
 const csvMirrorConfig = submissionConfig.csvMirror?.enabled ? submissionConfig.csvMirror : null;
@@ -30,16 +63,28 @@ function renderAllClips() {
   clips.forEach((clip, index) => {
     const section = document.createElement("section");
     section.className = "card";
+
+    const checkboxesHTML = GESTURES.map((gesture, i) => `
+      <label class="checkbox">
+        <input type="checkbox"
+               name="gesture-${clip.id}"
+               value="${gesture}"
+               data-clip-id="${clip.id}"
+               data-gesture="${gesture}" />
+        ${gesture}
+      </label>
+    `).join("");
+
     section.innerHTML = `
       <header class="card__header">
         <h2>${index + 2}. ${clip.label}</h2>
       </header>
       <div class="card__body card__body--stack">
         <video controls preload="auto" playsinline src="${clip.src}" class="video-shell__video"></video>
-        <label class="field">
-          <span class="field__label">${clip.prompt || "Name the surgical gesture"}</span>
-          <input type="text" class="field__control" data-clip-id="${clip.id}" placeholder="Type gesture name here" />
-        </label>
+        <p class="help">Select the surgical gestures present in this clip:</p>
+        <div class="checkbox-grid">
+          ${checkboxesHTML}
+        </div>
       </div>
     `;
     clipsContainer.appendChild(section);
@@ -53,10 +98,15 @@ async function submitResponses() {
     return;
   }
 
-  const responses = Array.from(document.querySelectorAll("input[data-clip-id]")).map(input => ({
-    clipId: input.dataset.clipId,
-    response: input.value.trim(),
-  }));
+  
+const responses = clips.map(clip => {
+  const selectedGestures = Array.from(document.querySelectorAll(`input[name="gesture-${clip.id}"]:checked`))
+                                .map(cb => cb.value);
+  return {
+    clipId: clip.id,
+    gestures: selectedGestures
+  };
+});
 
   const payload = {
     participant,
