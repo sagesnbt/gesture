@@ -1,29 +1,20 @@
 // clip-config.js
-window.ANNOTATION_CLIPS = [
-  {
-    id: "clip_01",
-    label: "Clip 1",
-    src: "https://raw.githubusercontent.com/mariacmorais/mariacmorais.github.io/main/Video_01_K_02.mp4",
-    poster: "",
-    prompt: "Please describe what you observed in this clip.", // You can change this later
-  },
-  {
-    id: "clip_02",
-    label: "Clip 2",
-    src: "https://raw.githubusercontent.com/mariacmorais/mariacmorais.github.io/main/Video_02_K_03.mp4",
-    poster: "",
-    prompt: "Briefly explain the key event in this video.", // Customizable prompt
-  },
-];
+window.ANNOTATION_CLIPS = Array.from({ length: 10 }, (_, i) => ({
+  id: `clip_${i + 1}`,
+  label: `Clip ${i + 1}`,
+  src: `https://raw.githubusercontent.com/mariacmorais/gesture/main/clip-${i + 1}.mp4`,
+  poster: "",
+  prompt: "Please enter the name of the gesture(s) you have identified from this clip.",
+}));
 
 window.ANNOTATION_SUBMISSION = {
   endpoint: "", // <-- submission endpoint here
   method: "POST",
   headers: {
-    "Accept": "application/json",
+    Accept: "application/json",
   },
   additionalFields: {
-    studyId: "demo-study",
+    studyId: "gesture-identification",
   },
   bodyWrapper: "annotation",
   csvMirror: {
