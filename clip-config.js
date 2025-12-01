@@ -4,7 +4,7 @@ window.ANNOTATION_CLIPS = Array.from({ length: 10 }, (_, i) => ({
   label: `Clip ${i + 1}`,
   src: `https://raw.githubusercontent.com/mariacmorais/gesture/main/clip-${i + 1}.mp4`,
   poster: "",
-  prompt: "Please enter the name of the gesture(s) you have identified from this clip.",
+  prompt: "Please enter the gesture(s) you have identified from this clip.",
 }));
 
 window.ANNOTATION_SUBMISSION = {
