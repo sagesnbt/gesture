@@ -62,3 +62,75 @@
   <script src="app.js"></script>
 </body>
 </html>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Surgical Gesture Annotation</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="layout">
+    <header class="layout__header">
+      <h1>Surgical Gesture Annotation</h1>
+      <p>Watch each clip and enter the name of the gestures you identify below.</p>
+    </header>
+
+    <!-- Identification Section -->
+    <section class="card">
+      <header class="card__header">
+        <h2>1. Identification</h2>
+      </header>
+      <div class="card__body card__body--stack">
+        <label class="field">
+          <span class="field__label">Name</span>
+          <input id="participantName" class="field__control" type="text" placeholder="e.g., Smith" />
+        </label>
+        <label class="field">
+          <span class="field__label">Institution</span>
+          <input id="participantInstitution" class="field__control" type="text" placeholder="e.g., XYZ Hospital" />
+        </label>
+        <label class="field">
+          <span class="field__label">Specialty</span>
+          <input id="participantSpecialty" class="field__control" type="text" placeholder="e.g., MIS, HPB" />
+        </label>
+        <label class="field">
+          <span class="field__label">How many years of practice?</span>
+          <input id="participantPractice" class="field__control" type="number" placeholder="Enter a number only" />
+        </label>
+        <div class="field">
+          <span class="field__label">Are you board-certified?</span>
+          <label><input type="radio" name="boardCertified" value="Yes" /> Yes</label><br />
+          <label><input type="radio" name="boardCertified" value="No" /> No</label>
+        </div>
+        <p class="help">This information will be included with your responses.</p>
+      </div>
+    </section>
+
+    <!-- Clips (will be rendered by JS) -->
+    <div id="clipsContainer"></div>
+
+    <!-- Submit Button -->
+    <section class="card">
+      <header class="card__header">
+        <h2>3. Submit</h2>
+      </header>
+      <div class="card__body card__body--stack">
+        <button id="submitAllBtn" class="primary">Submit All Responses</button>
+        <p class="help" id="submissionStatus"></p>
+      </div>
+    </section>
+  </main>
+
+  <template id="toastTemplate">
+    <div class="toast" role="status" aria-live="polite"></div>
+  </template>
+
+  <script src="clip-config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
