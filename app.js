@@ -4,37 +4,12 @@ const submissionStatus = document.getElementById("submissionStatus");
 const toastTemplate = document.getElementById("toastTemplate");
 
 const GESTURES = [
-  "Insert",
-  "Port Placement",
-  "Pull",
-  "Push",
-  "Release",
-  "Retract",
-  "Stick",
-  "Spread",
-  "Camera Move",
-  "Dissect",
-  "Resect",
-  "Cut",
-  "Seal",
-  "Irrigate",
-  "Suction",
-  "Grasp",
-  "Clamp",
-  "Clean",
-  "Clip",
-  "Coagulate",
-  "Tamponade",
-  "Hook",
-  "Idle",
-  "Instrument Removal",
-  "Rotate",
-  "Specimen Removal",
-  "Staple",
-  "Knot Tie",
-  "Needle Drive"
+  "Insert", "Port Placement", "Pull", "Push", "Release", "Retract", "Stick",
+  "Spread", "Camera Move", "Dissect", "Resect", "Cut", "Seal", "Irrigate",
+  "Suction", "Grasp", "Clamp", "Clean", "Clip", "Coagulate", "Tamponade",
+  "Hook", "Idle", "Instrument Removal", "Rotate", "Specimen/Material Removal",
+  "Staple", "Knot Tie", "Needle Drive"
 ];
-
 
 const clips = window.ANNOTATION_CLIPS || [];
 const submissionConfig = window.ANNOTATION_SUBMISSION || {};
@@ -60,8 +35,6 @@ function getParticipantData() {
 }
 
 function renderAllClips() {
-  const instrumentOptions = ["Dominant Instrument", "Passive Retractor", "Active Retractor"];
-
   clips.forEach((clip, index) => {
     const section = document.createElement("section");
     section.className = "card";
@@ -79,19 +52,6 @@ function renderAllClips() {
       </label>
     `).join("");
 
-    const instrumentDropdowns = [1, 2, 3].map(i => `
-      <label class="field">
-        <span class="field__label">Instrument ${i}</span>
-        <select class="field__control"
-                name="instrument-${clip.id}-${i}"
-                data-clip-id="${clip.id}"
-                data-instrument-index="${i}">
-          <option value="">--Instrument--</option>
-          ${instrumentOptions.map(opt => `<option value="${opt}">${opt}</option>`).join("")}
-        </select>
-      </label>
-    `).join("");
-
     section.innerHTML = `
       <header class="card__header">
         <h2>${index + 2}. ${clip.label}</h2>
@@ -100,7 +60,6 @@ function renderAllClips() {
         <video controls preload="auto" playsinline src="${clip.src}" class="video-shell__video"></video>
         <div class="gesture-instrument-grid">
           <div>${gestureDropdowns}</div>
-          <div>${instrumentDropdowns}</div>
         </div>
       </div>
     `;
@@ -109,7 +68,6 @@ function renderAllClips() {
   });
 }
 
-
 async function submitResponses() {
   const participant = getParticipantData();
   if (!participant.Name || !participant.Institution) {
@@ -117,24 +75,18 @@ async function submitResponses() {
     return;
   }
 
-const responses = clips.map(clip => {
-  const gestures = [1, 2, 3].map(i => {
-    const sel = document.querySelector(`select[name="gesture-${clip.id}-${i}"]`);
-    return sel?.value || "";
+  const responses = clips.map(clip => {
+    const gestures = [1, 2, 3].map(i => {
+      const sel = document.querySelector(`select[name="gesture-${clip.id}-${i}"]`);
+      return sel?.value || "";
+    });
+
+    return {
+      clipId: clip.id,
+      gestures
+    };
   });
 
-  const instruments = [1, 2, 3].map(i => {
-    const sel = document.querySelector(`select[name="instrument-${clip.id}-${i}"]`);
-    return sel?.value || "";
-  });
-
-  return {
-    clipId: clip.id,
-    gestures,
-    instruments
-  };
-});
-  
   const payload = {
     participant,
     responses,
@@ -167,7 +119,7 @@ const responses = clips.map(clip => {
       Object.entries(participant).forEach(([k, v]) => flat.set(k, v));
       responses.forEach((r, i) => {
         flat.set(`Clip_${i + 1}_ID`, r.clipId);
-        flat.set(`Clip_${i + 1}_Response`, r.response);
+        flat.set(`Clip_${i + 1}_Gestures`, r.gestures.join(", "));
       });
       flat.set("SubmittedAt", payload.submittedAt);
       await fetch(csvMirrorConfig.endpoint, {
