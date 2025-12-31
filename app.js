@@ -4,11 +4,16 @@ const submissionStatus = document.getElementById("submissionStatus");
 const toastTemplate = document.getElementById("toastTemplate");
 
 const GESTURES = [
-  "Insert", "Port Placement", "Pull", "Push", "Release", "Retract", "Stick",
-  "Spread", "Camera Move", "Dissect", "Resect", "Cut", "Seal", "Irrigate",
-  "Suction", "Grasp", "Clamp", "Clean", "Clip", "Coagulate", "Tamponade",
-  "Hook", "Idle", "Instrument Removal", "Rotate", "Specimen/Material Removal",
-  "Staple", "Knot Tie", "Needle Drive"
+  "Dissection Gestures",
+  "Division Gestures",
+  "Fluid Management",
+  "Grasping Gestures",
+  "Hemostasis",
+  "Idle",
+  "Instrument Handling",
+  "Specimen and Material Manipulation",
+  "Stapling Gestures",
+  "Suturing Gestures"
 ];
 
 const clips = window.ANNOTATION_CLIPS || [];
@@ -41,12 +46,12 @@ function renderAllClips() {
 
     const gestureDropdowns = [1].map(i => `
       <label class="field">
-        <span class="field__label">Gesture ${i}</span>
+        <span class="field__label">Cluster of Gestures ${i}</span>
         <select class="field__control"
                 name="gesture-${clip.id}-${i}"
                 data-clip-id="${clip.id}"
                 data-gesture-index="${i}">
-          <option value="">--Select Gesture--</option>
+          <option value="">--Select Cluster--</option>
           ${GESTURES.map(g => `<option value="${g}">${g}</option>`).join("")}
         </select>
       </label>
