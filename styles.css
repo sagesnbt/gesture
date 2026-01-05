@@ -124,6 +124,10 @@ body {
   overflow: hidden;
   border: 1px solid rgba(148, 163, 184, 0.25);
 }
+.video-shell {
+  max-width: 640px;  /* Optional: adjust to 854px or 720px if needed */
+  margin: 0 auto;    /* Center the video horizontally */
+}
 
 .video-shell video,
 .video-shell canvas {
