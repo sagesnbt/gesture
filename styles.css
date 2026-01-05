@@ -34,6 +34,17 @@ body {
   gap: 0.75rem;
 }
 
+.layout__header a {
+  color: #f8fafc;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.layout__header a:hover {
+  color: var(--accent);  /* or any highlight color you prefer */
+  text-decoration: none;
+}
+
 .layout__header h1 {
   margin: 0;
   font-size: clamp(1.75rem, 3vw, 2.6rem);
