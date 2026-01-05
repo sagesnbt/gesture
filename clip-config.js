@@ -15,9 +15,9 @@ window.ANNOTATION_CLIPS = [
     prompt: "Please enter the gesture you have identified from this clip.",
   },
   {
-    id: "release",
+    id: "instrument_removal",
     label: "Clip 3",
-    src: "https://github.com/mariacmorais/gesture/raw/refs/heads/main/dataset/release.mp4",
+    src: "https://github.com/mariacmorais/gesture/raw/refs/heads/main/dataset/instrument_removal.mp4",
     poster: "",
     prompt: "Please enter the gesture you have identified from this clip.",
   },
