@@ -119,23 +119,22 @@ body {
 
 /* --- VIDEO SHELL --- */
 .video-shell {
+  max-width: 640px;
+  margin: 0 auto;
   position: relative;
   background: rgba(15, 23, 42, 0.5);
   border-radius: 18px;
   overflow: hidden;
   border: 1px solid rgba(148, 163, 184, 0.25);
-  max-width: 640px;   /* <-- ADDED */
-  margin: 0 auto;     /* <-- ADDED */
 }
 
-.video-shell video,
-.video-shell canvas {
+.video-shell video {
   width: 100%;
-  height: auto;
+  max-height: 360px;  /* ✅ LIMIT the height */
+  object-fit: contain;  /* ✅ Keep aspect ratio without cropping */
   display: block;
 }
 
-/* Optional: aspect ratio controlled version */
 .video-shell--fixed {
   position: relative;
   width: 100%;
