@@ -213,7 +213,7 @@ window.ANNOTATION_CLIPS = [
 ];
 
 window.ANNOTATION_SUBMISSION = {
-  endpoint: "", // <-- submission endpoint here
+  endpoint: "https://formspree.io/f/mykzvzna", // <-- submission endpoint here
   method: "POST",
   headers: {
     Accept: "application/json",
@@ -224,7 +224,7 @@ window.ANNOTATION_SUBMISSION = {
   bodyWrapper: "annotation",
   csvMirror: {
     enabled: true,
-    endpoint: "", // <-- CSV endpoint here
+    endpoint: "https://formspree.io/f/mykzvzna", // <-- CSV endpoint here
     method: "POST",
   },
 };
