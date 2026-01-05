@@ -78,7 +78,9 @@ function renderAllClips() {
         <h2>${index + 2}. ${clip.label}</h2>
       </header>
       <div class="card__body card__body--stack">
-        <video controls preload="auto" playsinline src="${clip.src}" class="video-shell__video"></video>
+        <div class="video-shell">
+          <video controls preload="auto" playsinline src="${clip.src}"></video>
+        </div>
         <div class="gesture-instrument-grid">
           <div>${gestureDropdowns}</div>
         </div>
