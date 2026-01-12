@@ -46,12 +46,14 @@ function showToast(message) {
 
 function getParticipantData() {
   const board = document.querySelector("input[name='boardCertified']:checked");
+  const houston = document.querySelector("input[name='attendanceMeeting']:checked");
   return {
     Name: document.getElementById("participantName")?.value.trim() || "",
     Institution: document.getElementById("participantInstitution")?.value.trim() || "",
     Specialty: document.getElementById("participantSpecialty")?.value.trim() || "",
     Practice: document.getElementById("participantPractice")?.value.trim() || "",
     Board: board?.value || "",
+    Houston: houston?.value || "",
     AdditionalGestures: document.getElementById("additionalGestures")?.value.trim() || ""
   };
 }
