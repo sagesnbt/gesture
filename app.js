@@ -56,9 +56,13 @@ function getParticipantData() {
     Houston: houston?.value || "",
     Camera: document.querySelector("input[name='cameraMove1']:checked")?.value || "",
     cameraMove: document.getElementById("cameraMove")?.value.trim() || "",
+    Dissection: document.querySelector("input[name='dissectionGestures1']:checked")?.value || "",
     dissectionGestures: document.getElementById("dissectionGestures")?.value.trim() || "",
+    Division: document.querySelector("input[name='divisionGestures1']:checked")?.value || "",
     divisionGestures: document.getElementById("divisionGestures")?.value.trim() || "",
+    BluntMan: document.querySelector("input[name='bluntManipulation1']:checked")?.value || "",
     bluntManipulation: document.getElementById("bluntManipulation")?.value.trim() || "",
+    Fluid: document.querySelector("input[name='fluidManagement1']:checked")?.value || "",
     fluidManagement: document.getElementById("fluidManagement")?.value.trim() || ""
   };
 }
