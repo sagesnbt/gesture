@@ -63,7 +63,8 @@ function getParticipantData() {
     BluntMan: document.querySelector("input[name='bluntManipulation1']:checked")?.value || "",
     bluntManipulation: document.getElementById("bluntManipulation")?.value.trim() || "",
     Fluid: document.querySelector("input[name='fluidManagement1']:checked")?.value || "",
-    fluidManagement: document.getElementById("fluidManagement")?.value.trim() || ""
+    fluidManagement: document.getElementById("fluidManagement")?.value.trim() || "",
+    Additional: document.getElementById("additionalGestures")?.value.trim() || ""
   };
 }
 
