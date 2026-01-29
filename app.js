@@ -55,6 +55,7 @@ function getParticipantData() {
     Board: board?.value || "",
     Houston: houston?.value || "",
     cameraMove: document.getElementById("cameraMove")?.value.trim() || "",
+    Camera: cameraMove1?.value || "",
     dissectionGestures: document.getElementById("dissectionGestures")?.value.trim() || "",
     divisionGestures: document.getElementById("divisionGestures")?.value.trim() || "",
     bluntManipulation: document.getElementById("bluntManipulation")?.value.trim() || "",
