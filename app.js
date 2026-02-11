@@ -138,7 +138,10 @@ async function submitResponses() {
           ...participant,
         };
 
+  // ... (top half of function remains the same) ...
+
   try {
+    // --- 1. MAIN SUBMISSION ---
     const res = await fetch(submissionConfig.endpoint, {
       method: submissionConfig.method || "POST",
       headers: submissionConfig.headers || { "Content-Type": "application/json" },
@@ -147,24 +150,35 @@ async function submitResponses() {
 
     if (!res.ok) throw new Error("Failed to submit");
 
+    // SUCCESS! Update UI immediately so the user knows they are safe.
     showToast("Responses submitted successfully!");
     submissionStatus.textContent = "Thank you! Your responses have been recorded.";
 
+    // --- 2. CSV MIRROR (ISOLATED) ---
+    // We do this *after* telling the user it succeeded.
     if (csvMirrorConfig?.endpoint) {
-      const flat = new URLSearchParams();
-      Object.entries(participant).forEach(([k, v]) => flat.set(k, v));
-      responses.forEach((r, i) => {
-        flat.set(`Clip_${i + 1}_ID`, r.clipId);
-        flat.set(`Clip_${i + 1}_Gestures`, r.gestures);
-      });
-      flat.set("SubmittedAt", payload.submittedAt);
-      await fetch(csvMirrorConfig.endpoint, {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: flat.toString(),
-      });
+      try {
+        const flat = new URLSearchParams();
+        Object.entries(participant).forEach(([k, v]) => flat.set(k, v));
+        responses.forEach((r, i) => {
+          flat.set(`Clip_${i + 1}_ID`, r.clipId);
+          flat.set(`Clip_${i + 1}_Gestures`, r.gestures);
+        });
+        flat.set("SubmittedAt", payload.submittedAt);
+        
+        await fetch(csvMirrorConfig.endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: flat.toString(),
+        });
+      } catch (mirrorErr) {
+        // If this fails, we just log it. We DO NOT tell the user it failed.
+        console.warn("Main submission worked, but CSV mirror failed:", mirrorErr);
+      }
     }
+
   } catch (err) {
+    // This catch block now ONLY runs if the MAIN submission fails.
     showToast("Submission failed. Try again.");
     submissionStatus.textContent = "An error occurred during submission.";
     console.error(err);
