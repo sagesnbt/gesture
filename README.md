@@ -29,9 +29,6 @@ To set up the project locally, follow these steps:
 ## Usage
 Once the application is running, you can start annotating gestures by following the on-screen instructions. The interface will guide you through the annotation process.
 
-## Contributing
-Contributions are welcome! Please read the [CONTRIBUTING.md](CONTRIBUTING.md) file for guidelines on how to contribute to this project.
-
 ## License
 This research was conducted as part of the 2026 SAGES NBT Innovation Weekend proceedings. Please cite appropriately if using this taxonomy in your research.
 
