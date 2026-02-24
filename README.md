@@ -37,9 +37,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Contact
 For any inquiries or feedback, please reach out to the project maintainer:
-- **Name**: [Your Name Here]
-- **Email**: [Your Email Here]
+- **Maria Clara Morais, MD**, Postdoctoral Research Fellow – Intraoperative Performance Analytics Lab
+- **Email**: mmorais@northwell.edu
 
 ---
-
-Feel free to enrich this README with more details about the project as necessary.
