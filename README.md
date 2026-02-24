@@ -33,7 +33,7 @@ Once the application is running, you can start annotating gestures by following 
 Contributions are welcome! Please read the [CONTRIBUTING.md](CONTRIBUTING.md) file for guidelines on how to contribute to this project.
 
 ## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This research was conducted as part of the 2026 SAGES NBT Innovation Weekend proceedings. Please cite appropriately if using this taxonomy in your research.
 
 ## Contact
 For any inquiries or feedback, please reach out to the project maintainer:
