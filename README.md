@@ -9,22 +9,19 @@ This project aims to provide a user-friendly interface for annotating surgical g
 - **Annotation Tools**: A set of tools for detailed gesture annotation and categorization.
 - **Data Export**: Option to export annotated data for further analysis.
 
-## Installation
-To set up the project locally, follow these steps:
+## Running the app
+This is a static web app — there are no dependencies and no build step.
 
 1. Clone the repository:
    ```bash
    git clone https://github.com/sagesnbt/gesture.git
    cd gesture
    ```
-2. Install the necessary dependencies:
+2. Serve the folder with any static web server, for example:
    ```bash
-   npm install
+   python3 -m http.server 8000
    ```
-3. Start the application:
-   ```bash
-   npm start
-   ```
+3. Open http://localhost:8000 in your browser.
 
 ## Usage
 Once the application is running, you can start annotating gestures by following the on-screen instructions. The interface will guide you through the annotation process.
